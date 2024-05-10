@@ -18,11 +18,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.dohee.board.dto.Board;
 import com.dohee.board.service.BoardService;
 
-import lombok.extern.slf4j.Slf4j;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@Slf4j
 @SpringBootTest
 class BoardApplicationTests {
 
@@ -31,8 +29,6 @@ class BoardApplicationTests {
 
 	@Test
 	void contextLoads() {
-		log.info("SPRING BOARD 테스트");
-		log.info("테스트를 실행합니다.");
 	}
 
 	@Test
@@ -58,7 +54,6 @@ class BoardApplicationTests {
 
 		if( result >= 3 ) {
 			assertTrue(true);
-			log.info("게시글 등록 3건 성공!");
 		} else {
 			fail("게시글 등록 실패!");
 		}
@@ -73,16 +68,12 @@ class BoardApplicationTests {
 		Board board = boardService.select(no);
 
 		if( board == null ) {
-			log.error("게시글 조회 실패 - board is null");
-			log.error("글번호 1번이 반드시 있어야합니다.");
 			fail("게시글 조회 실패!");
 		}
 
 		if( board !=null ) {
 			assertTrue(true);
-			log.info("게시글 조회 성공!");
 		} else {
-			log.error("글번호 1번이 반드시 있어야합니다.");
 			fail("게시글 조회 실패!");
 		}
 
@@ -101,10 +92,8 @@ class BoardApplicationTests {
 
 		if( result > 0 ) {
 			assertTrue(true);
-			log.info("게시글 수정 성공!");
 		} else {
 			fail("게시글 수정 실패!");
-			log.error("글번호 1번이 반드시 있어야합니다.");
 		}
 
 	}
@@ -118,10 +107,8 @@ class BoardApplicationTests {
 
 		if( result > 0 ) {
 			assertTrue(true);
-			log.info("게시글 삭제 성공!");
 		} else {
 			fail("게시글 삭제 실패!");
-			log.error("글번호 1번이 반드시 있어야합니다.");
 		}
 
 	}
@@ -133,15 +120,11 @@ class BoardApplicationTests {
         List<Board> boardList = boardService.list();
 
 		if(boardList == null ) {
-			log.error("게시글 목록 조회 실패 - boardList is null");
 			return;
 		}
-		log.info("게시글 개수 : " + boardList.size());
         if (boardList.size() >= 2) {
             assertTrue(true);
-			log.info("게시글 목록 조회 성공!");
         } else {
-			log.error("게시글 목록 조회 실패 - 게시글 최소 2개 이상");
             fail("검증 실패: 리스트의 크기가 2보다 작습니다.");
         }
 	}
