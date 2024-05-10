@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 조회</title>
+</head>
+<body>
+    <h1>게시글 조회</h1>
+    <table border="2">
+        <tr>
+            <td>제목</td>
+            <td th:text="${board.title}"></td>
+        </tr>
+        <tr>
+            <td>작성자</td>
+            <td th:text="${board.writer}"></td>
+        </tr>
+        <tr>
+            <td>내용</td>
+            <td>
+                <textarea name="content"cols="30" rows="10" readonly th:text="${board.content}"></textarea>
+            </td>
+        </tr>
+    </table>
+
+    <button type="button" onclick="moveToUpdate()">수정</button>
+    <button type="button" onclick="moveToList()">목록</button>
+
+    <script>
+        let no = "[[${board.no}]]"
+
+        function moveToList() {
+            location.href="/board/list";
+        }
+
+        function moveToUpdate() {
+            location.href="/board/update?no="+ no ;
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+</head>
+<body>
+    <h1>게시판</h1>
+    <table border="2">
+        <tr>
+            <td>번호</td>
+            <td>제목</td>
+            <td>작성자</td>
+            <td>작성일자</td>
+            <td>수정일자</td>
+        </tr>
+        <tr th:if="${boardList.isEmpty()}">
+            <td colspan="5">조회된 게시글이 없습니다.</td>
+        </tr>
+        <tr th:each="board : ${boardList}">
+            <td th:text="${board.no}"></td>
+            <td>
+                <a th:href="|/board/read?no=${board.no}|" th:text="${board.title}"></a>
+            </td>
+            <td th:text="${board.writer}"></td>
+            <td th:text="${board.regDate}"></td>
+            <td th:text="${board.updDate}"></td>
+        </tr>
+    </table>
+    <button type="button" onclick="moveToInsert()">작성</button>
+
+    <script>
+        function moveToInsert() {
+            location.href="/board/insert";
+        }
+    </script>
+</body>
+</html>
